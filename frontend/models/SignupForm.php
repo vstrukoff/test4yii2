@@ -12,6 +12,7 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+    public $is_admin;
 
 
     /**
@@ -33,6 +34,8 @@ class SignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
+
+            ['is_admin', 'required']
         ];
     }
 
@@ -49,6 +52,7 @@ class SignupForm extends Model
         
         $user = new User();
         $user->username = $this->username;
+        $user->is_admin = $this->is_admin;
         $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();
