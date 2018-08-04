@@ -9,9 +9,13 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
+<?php if ((Yii::$app->controller->action->id !== 'login') && (Yii::$app->user->isGuest)) {
+    Yii::$app->response->redirect(Url::to(['/site/login']), 301);
+} ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
